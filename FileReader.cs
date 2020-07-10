@@ -20,7 +20,17 @@ namespace Support_Bank
                 var to = parts[2];
                 var narrative = parts[3];
                 var amount = parts[4];
+                
 
+                var transaction = new Transactions();
+                transaction.date = parts[0];
+                transaction.from = parts[1];
+                transaction.to = parts[2];
+                transaction.narrative =parts[3];
+                transaction.amount = Convert.ToDecimal(parts[4]);
+
+
+                transactions.Add(transaction);
                 Console.WriteLine(from);
                 
             }
