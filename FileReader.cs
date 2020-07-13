@@ -1,42 +1,32 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Support_Bank
 {
-    class FileReader
+    public class FileReader
     {
-        public static List <Transactions> ReadTransactionsFromFile()
+        public static List<Transaction> ReadTransactions()
         {
-            var transactions = new List<Transactions>();
-            var csvLines = File.ReadLines("Transactions.csv").Skip(1);
-            foreach(var line in csvLines)
+            var linesFromFile = File.ReadAllLines("Data/Transactions2014.csv");
+            
+            var transactions = new List<Transaction>();
+            foreach (var line in linesFromFile.Skip(1))
             {
                 var parts = line.Split(",");
-
-                var date = parts[0];
-                var from = parts[1];
-                var to = parts[2];
-                var narrative = parts[3];
-                var amount = parts[4];
                 
-
-                var transaction = new Transactions();
-                transaction.date = parts[0];
-                transaction.from = parts[1];
-                transaction.to = parts[2];
-                transaction.narrative =parts[3];
-                transaction.amount = Convert.ToDecimal(parts[4]);
-
-
-                transactions.Add(transaction);
-                Console.WriteLine(from);
+                var newTransaction = new Transaction();
+                newTransaction.date = parts[0];
+                newTransaction.from = parts[1];
+                newTransaction.to = parts[2];
+                newTransaction.narrative = parts[3];
+                newTransaction.amount = Convert.ToDecimal(parts[4]);
                 
+                transactions.Add(newTransaction);
             }
+
             return transactions;
         }
     }
-    
-                
 }
