@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Support_Bank
 {
@@ -8,8 +9,7 @@ namespace Support_Bank
         {
             var transactions = FileReader.ReadTransactions();
             var accounts = Bank.GetAccounts(transactions);
-            
-            Console.WriteLine(accounts);
+            var UpdatedAccounts = Bank.UpdatedAccounts(transactions, accounts);
         }
     }
 }
